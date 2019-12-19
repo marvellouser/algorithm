@@ -28,3 +28,85 @@
  *          1. 叶子节点都在最后一层或倒数第二层;
  *          2. 如果有叶子节点, 就必然有两个叶子节点;
  */
+
+
+ /**
+  * 
+  * 二叉树遍历;
+  * 
+  *     前序遍历 (先根次序遍历):
+  *         根节点 => 左节点 => 右节点
+  *         function preEnum(root) {
+                if (root == null) return;
+                console.log(root.value);
+                preEnum(root.left);
+                preEnum(root.right);
+            }
+  * 
+  *     中序遍历 (中根次序遍历):
+  *         左节点 => 根节点 => 左节点
+  *         function midEnum(root) {
+                if (root == null) return;
+                midEnum(root.left);
+                console.log(root.value);
+                midEnum(root.right);
+            }
+  * 
+  *     后序遍历 (后根次序遍历): 
+  *         左节点 => 右节点 => 根节点
+  *         function nextEnum(root) {
+                if (root == null) return;
+                nextEnum(root.left);
+                nextEnum(root.right);
+                console.log(root.value);
+            }
+  */    
+
+
+
+  /**
+   * 
+   * 根据前序和中序还原二叉树
+   * var pre = [a, c, f, g, b, d, e];
+   * var mid = [f, c, g, a, d, b, e];
+   * 
+   *    function preMid(preList, midList) {
+            if (preList == null || midList == null || preList.length == 0 || midList.length == 0 || preList.length != midList.length) return null;
+            var root = new Node(preList[0]);
+            var index = midList.indexOf(preList[0]);
+            var preLeftList = preList.slice(1, index + 1);
+            var preRightList = preList.slice(index + 1, preList.length);
+            var midLeftList = midList.slice(0, index);
+            var midRightList = midList.slice(index + 1, midList.length);
+            root.left = preMid(preLeftList, midLeftList);
+            root.right = preMid(preRightList, midRightList);
+            return root;
+        }
+   */
+
+   /**
+    * 
+    * 根据后序和中序还原二叉树
+    * var next = ['f', 'g', 'c', 'd', 'e', 'b', 'a']
+    * var mid = ['f', 'c', 'g', 'a', 'd', 'b', 'e'];
+    * 
+    *   function nextMid(nextList, midList) {
+            if (nextList == null || midList == null || nextList.length == 0 || midList.length == 0 || midList.length != nextList.length) return null;
+            var root = new Node(nextList[nextList.length - 1]);
+            var index = midList.indexOf(root.value);
+            var nextLeftList = nextList.slice(0, index);
+            var nextRightList = nextList.slice(index, nextList.length - 1);
+            var midLeftList = midList.slice(0, index);
+            var midRightList = midList.slice(index + 1, midList.length);
+            root.left = nextMid(nextLeftList, midLeftList);
+            root.right = nextMid(nextRightList, midRightList);
+            return root;
+        }
+    */
+
+
+
+
+
+
+
