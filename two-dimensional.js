@@ -14,7 +14,7 @@
 /**
  *
  * 二叉树:
- *      树的度最多为2;    树只有两个叉;
+ *      树的度最多为2;    树最多只有两个叉;
  *
  * 满二叉树:
  *      所有的叶子节点都在最底层, 每个非叶子节点都有两个子节点
@@ -29,8 +29,7 @@
  *          2. 如果有叶子节点, 就必然有两个叶子节点;
  */
 
-
- /**
+/**
   * 
   * 二叉树遍历;
   * 
@@ -60,15 +59,13 @@
                 nextEnum(root.right);
                 console.log(root.value);
             }
-  */    
+  */
 
-
-
-  /**
+/**
    * 
    * 根据前序和中序还原二叉树
-   * var pre = [a, c, f, g, b, d, e];
-   * var mid = [f, c, g, a, d, b, e];
+   * var pre = ['a', 'c', 'f', 'g', 'b', 'd', 'e'];
+   * var mid = ['f', 'c', 'g', 'a', 'd', 'b', 'e'];
    * 
    *    function preMid(preList, midList) {
             if (preList == null || midList == null || preList.length == 0 || midList.length == 0 || preList.length != midList.length) return null;
@@ -84,7 +81,7 @@
         }
    */
 
-   /**
+/**
     * 
     * 根据后序和中序还原二叉树
     * var next = ['f', 'g', 'c', 'd', 'e', 'b', 'a']
@@ -104,9 +101,39 @@
         }
     */
 
+// pre [a, c, f, g, b, d, e];
+// mid [f, c, g, a, d, b, e];
+// next[f, g, c, d, e, b, a];
+function Node(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
 
+var next = ["f", "g", "c", "d", "e", "b", "a"];
+var mid = ["f", "c", "g", "a", "d", "b", "e"];
 
-
-
-
-
+function nextMid(next, mid) {
+  if (
+    next == null ||
+    mid == null ||
+    next.length == 0 ||
+    mid.length == 0 ||
+    next.length != mid.length
+  )
+    return;
+  var root = new Node(next[next.length - 1]);
+  var tempIndex = mid.indexOf(next[next.length - 1]);
+  var nextLeftList = next.slice(0, tempIndex);
+  var nextRightList = next.slice(tempIndex, next.length - 1);
+  var midLeftList = mid.slice(0, tempIndex);
+  var midRightList = mid.slice(tempIndex + 1, mid.length);
+  root.left = nextMid(nextLeftList, midLeftList);
+  root.right = nextMid(nextRightList, midRightList);
+  return root;
+}
+var a = nextMid(next, mid);
+console.log(a);
+//         a
+//     c          b
+// f      g     d       e
