@@ -32,4 +32,13 @@
         [7, 8, 0, 5, max],
         [max, 6, 5, 0, 7],
         [max, max, max, 7, 0]
-    ]
+    ];
+
+    function Node(value) {
+        this.value = value;
+        this.neighbor = []
+    }
+
+    function prim(pointSet, distance, start) {
+
+    }

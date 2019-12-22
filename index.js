@@ -55,9 +55,12 @@
   * 
   * 链表的逆置;
   * function reverseNode(root) {
+        if (root == null || root.next == null) return;
         if (root.next.next == null) {
             root.next.next = root;
-            return root.next;
+            var temp = root.next;
+            root.next = null;
+            return temp;
         }
         var result = reverseNode(root.next);
         root.next.next = root;
@@ -70,14 +73,14 @@
  *
  * 栈结构: 先进后出
  *
- *function Stack() {
-    this.arr = [];
-    this.push = function(value) {
-        this.arr.push(value);
-    };
-    this.pop = function() {
-        return this.arr.pop();
-    };
+ *  function Stack() {
+        this.arr = [];
+        this.push = function(value) {
+            this.arr.push(value);
+        };
+        this.pop = function() {
+            return this.arr.pop();
+        };
     }
  */
 
@@ -95,25 +98,3 @@
     };
     }
  */
-
-// function Node(value) {
-//   this.value = value;
-//   this.next = null;
-// }
-
-// var node1 = new Node(1);
-// var node2 = new Node(2);
-// var node3 = new Node(3);
-// var node4 = new Node(4);
-// var node5 = new Node(5);
-// node1.next = node2;
-// node2.next = node3;
-// node3.next = node4;
-// node4.next = node5;
-
-// var newNode = reverseNode(node1);
-// function enumNode(root) {
-//     if (root == null) return;
-//     console.log(root.value);
-//     enumNode(root.next);
-// }
