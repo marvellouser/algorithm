@@ -116,9 +116,83 @@
  *
  *    广度优先搜索: 更适合搜索局域;
  * 
- * 
+ *  function breadthSearch(rootList, target) {
+      if (rootList == null || rootList.length == 0) return false;
+      var nextRootList = [];
+      for (var i = 0; i < rootList.length; i++) {
+        if (rootList[i] == null) break;
+        if (rootList[i].value == target) {
+          return true;
+        }
+        nextRootList.push(rootList[i].left);
+        nextRootList.push(rootList[i].right);
+      }
+      return breadthSearch(nextRootList, target);
+    }
  * 
  */
+
+// function
+
+/**
+     * 
+     * 二叉树的比较
+     *      互换位置相等:
+     *          function compare(root1, root2) {
+                    if (root1 == root2) return true;
+                    if (root1 == null && root2 != null || root1 != null && root2 == null) return false;
+                    if (root1.value != root2.value) return false;
+                    var left = compare(root1.left, root2.left);
+                    var right = compare(root1.right, root2.right);
+                    return compare(root1.left, root2.left) && compare(root1.right, root2.right);
+                }
+     */
+
+/**
+      * 
+      * 二叉树diff算法
+      * function diffTree(root1, root2, diffList) {
+            if (root1 == root2) return diffList;
+            if (root1 == null && root2 != null) {
+                diffList.push({
+                    type: '新增',
+                    origin: null,
+                    target: root2
+                })
+            } else if (root1 != null && root2 == null) {
+                diffList.push({
+                    type: '删除',
+                    origin: root1,
+                    target: null
+                })
+            } else if (root1.value != root2.value) {
+                diffList.push({
+                    type: '修改',
+                    origin: root1,
+                    target: root2
+                })
+                diffTree(root1.left, root2.left, diffList);
+                diffTree(root1.right, root2.right, diffList);
+            } else {
+                diffTree(root1.left, root2.left, diffList);
+                diffTree(root1.right, root2.right, diffList);
+            }
+        }
+      */
+
+function breadthSearch(rootList, target) {
+  if (rootList == null || rootList.length == 0) return false;
+  var nextRootList = [];
+  for (var i = 0; i < rootList.length; i++) {
+    if (rootList[i] == null) break;
+    if (rootList[i].value == target) {
+      return true;
+    }
+    nextRootList.push(rootList[i].left);
+    nextRootList.push(rootList[i].right);
+  }
+  return breadthSearch(nextRootList, target);
+}
 
 function Node(value) {
   this.value = value;
@@ -133,12 +207,11 @@ var d = new Node("d");
 var e = new Node("e");
 var f = new Node("f");
 var g = new Node("g");
-
 a.left = c;
 a.right = b;
-c.left = f;
-c.right = g;
 b.left = d;
 b.right = e;
+c.left = f;
+c.right = g;
 
-// function
+console.log(breadthSearch([a], "a"));
