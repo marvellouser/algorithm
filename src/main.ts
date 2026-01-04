@@ -1,5 +1,13 @@
-const el = document.querySelector("#app");
-if (el) {
-  el.innerHTML = "<h1>Vite + TypeScript</h1>";
+function importDaily() {
+  const fromRoot = import.meta.glob('/daily/**/*.{ts,js,tsx,jsx,mjs}', {
+    eager: true,
+  })
+  const fromSrc = import.meta.glob('/src/daily/**/*.{ts,js,tsx,jsx,mjs}', {
+    eager: true,
+  })
+  const modules = { ...fromRoot, ...fromSrc }
+  const files = Object.keys(modules)
+  return modules
 }
-console.log("Vite dev server ready111");
+
+importDaily()
