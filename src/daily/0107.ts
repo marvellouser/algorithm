@@ -35,26 +35,26 @@
  */
 
 function isValid(s: string) {
-  const stack: string[] = []
+  const stack: string[] = [];
   const map = new Map([
     ['(', ')'],
     ['[', ']'],
     ['{', '}'],
-  ])
+  ]);
   for (const char of s) {
     if (map.has(char)) {
-      stack.push(char)
+      stack.push(char);
     } else {
-      const left = stack.pop()
+      const left = stack.pop();
       if (!left) {
-        return false
+        return false;
       }
       if (map.get(left) !== char) {
-        return false
+        return false;
       }
     }
   }
-  return stack.length === 0
+  return stack.length === 0;
 }
 
 // console.log(isValid('()[]{}'))
@@ -109,38 +109,38 @@ function isValid(s: string) {
  */
 
 function evalRPN(tokens: string[]): number {
-  let stack: number[] = []
+  let stack: number[] = [];
 
   // 遍历给定的逆波兰表达式tokens
   for (let token of tokens) {
     if (isNaN(Number(token))) {
-      const num1 = stack.pop()
-      const num2 = stack.pop()
+      const num1 = stack.pop();
+      const num2 = stack.pop();
       if (num1 === undefined || num2 === undefined) {
-        throw new Error('Invalid expression')
+        throw new Error('Invalid expression');
       }
       switch (token) {
         case '+':
-          stack.push(num2 + num1)
-          break
+          stack.push(num2 + num1);
+          break;
         case '-':
-          stack.push(num2 - num1)
-          break
+          stack.push(num2 - num1);
+          break;
         case '*':
-          stack.push(num2 * num1)
-          break
+          stack.push(num2 * num1);
+          break;
         case '/':
-          stack.push(Math.trunc(num2 / num1))
-          break
+          stack.push(Math.trunc(num2 / num1));
+          break;
         default:
-          throw new Error('Invalid expression')
+          throw new Error('Invalid expression');
       }
     } else {
-      stack.push(Number(token))
+      stack.push(Number(token));
     }
   }
   // 最终栈中剩下的唯一元素即为表达式的结果
-  return stack.pop()!
+  return stack.pop()!;
 }
 
 // console.log(evalRPN(['2', '1', '+', '3', '*']))

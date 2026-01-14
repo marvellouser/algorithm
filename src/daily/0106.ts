@@ -38,18 +38,18 @@
  */
 
 function groupAnagrams(strs: string[]) {
-  const strMap = new Map()
+  const strMap = new Map();
 
   for (const str of strs) {
-    const sortStr = str.split('').sort().join('')
+    const sortStr = str.split('').sort().join('');
     if (strMap.has(sortStr)) {
-      strMap.get(sortStr).push(str)
+      strMap.get(sortStr).push(str);
     } else {
-      strMap.set(sortStr, [str])
+      strMap.set(sortStr, [str]);
     }
   }
 
-  return [...strMap.values()]
+  return [...strMap.values()];
 }
 
 // console.log(groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']))
@@ -82,20 +82,20 @@ function groupAnagrams(strs: string[]) {
  */
 
 function longestConsecutive(nums: number[]): number {
-  if (nums.length === 0) return 0
-  nums = [...new Set(nums.sort((a, b) => a - b))]
-  let num = 1
-  let maxNum = 1
+  if (nums.length === 0) return 0;
+  nums = [...new Set(nums.sort((a, b) => a - b))];
+  let num = 1;
+  let maxNum = 1;
   for (let i = 1; i < nums.length; i++) {
-    console.log(nums[i], '.........', nums[i - 1])
+    console.log(nums[i], '.........', nums[i - 1]);
     if (nums[i] === nums[i - 1] + 1) {
-      num++
-      maxNum = Math.max(maxNum, num)
+      num++;
+      maxNum = Math.max(maxNum, num);
     } else {
-      num = 1
+      num = 1;
     }
   }
-  return maxNum
+  return maxNum;
 }
 
 // console.log(longestConsecutive([100, 4, 200, 1, 3, 2]))

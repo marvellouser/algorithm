@@ -25,18 +25,18 @@
  */
 
 function isAnagram(s: string, t: string) {
-  if (s.length !== t.length) return false
-  const map = new Map()
+  if (s.length !== t.length) return false;
+  const map = new Map();
   for (const char of s) {
-    map.set(char, (map.get(char) || 0) + 1)
+    map.set(char, (map.get(char) || 0) + 1);
   }
 
   for (const tChar of t) {
-    const count = map.get(tChar)
-    if (!count || count <= 0) return false
-    map.set(tChar, count - 1)
+    const count = map.get(tChar);
+    if (!count || count <= 0) return false;
+    map.set(tChar, count - 1);
   }
-  return true
+  return true;
 }
 
 // console.log(isAnagram('anagram', 'nagaram'))
@@ -69,16 +69,16 @@ function isAnagram(s: string, t: string) {
  */
 
 function twoSum(nums: number[], target: number) {
-  const map: Record<number, number> = {}
+  const map: Record<number, number> = {};
   for (let i = 0; i < nums.length; i++) {
-    const num = nums[i]
-    const diff = target - num
+    const num = nums[i];
+    const diff = target - num;
     if (map[diff] !== undefined) {
-      return [map[diff], i]
+      return [map[diff], i];
     }
-    map[num] = i
+    map[num] = i;
   }
-  return []
+  return [];
 }
 
 // console.log(twoSum([2, 7, 11, 15], 9))
