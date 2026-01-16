@@ -56,7 +56,7 @@ function moveZeroes(nums: number[]) {
 解释："amanaplanacanalpanama" 是回文串。
 
 示例 2：
-输入：s = " "
+输入：s = " "  
 输出：true
 解释：在移除非字母数字字符之后，s 是一个空字符串 "" 。
 由于空字符串正着反着读都一样，所以是回文串。
@@ -93,4 +93,4 @@ function isPalindrome(s: string) {
   return true;
 }
 const s = 'A man, a plan, a canal: Panama';
-console.log(isPalindrome(s));
+// console.log(isPalindrome(s));

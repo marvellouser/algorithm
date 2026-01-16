@@ -11,3 +11,12 @@ function importDaily() {
 }
 
 importDaily();
+
+const app = document.getElementById('app') as HTMLDivElement;
+app.onclick = () => {
+  console.log('click');
+};
+
+// app.onclick = () => {
+//   console.log('click222222222');
+// };
